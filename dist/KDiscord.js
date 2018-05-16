@@ -1,0 +1,22 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+require("reflect-metadata");
+const inversify_1 = require("inversify");
+const KClient_1 = require("./KBase/KClient");
+exports.KClient = KClient_1.KClient;
+const CommandRegistry_1 = require("./KBase/CommandRegistry");
+exports.CommandRegistry = CommandRegistry_1.CommandRegistry;
+const CommandMessage_1 = require("./KBase/CommandMessage");
+exports.CommandMessage = CommandMessage_1.CommandMessage;
+const MessageHandler_1 = require("./KBase/MessageHandler");
+exports.MessageHandler = MessageHandler_1.MessageHandler;
+const KCommand_1 = require("./KBase/KCommand");
+exports.KCommand = KCommand_1.KCommand;
+const container = new inversify_1.Container();
+exports.container = container;
+container.bind(KClient_1.KClient).toSelf().inSingletonScope();
+container.bind(CommandRegistry_1.CommandRegistry).toSelf();
+container.bind(MessageHandler_1.MessageHandler).toSelf();
+const kDiscord = container.resolve(KClient_1.KClient);
+exports.kDiscord = kDiscord;
+//# sourceMappingURL=KDiscord.js.map
